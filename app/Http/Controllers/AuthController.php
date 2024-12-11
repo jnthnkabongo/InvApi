@@ -2,26 +2,51 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AuthSave;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Laravel\Passport\HasApiTokens;
 
 class AuthController extends Controller
 {
-    public function login(Request $request){
+    // public function logins(Request $request){
+    //     $request->validate([
+    //         'email' => 'required|string|email',
+    //         'password' => 'required|string'
+    //     ]);
+    //     $user = User::where('email', $request->email)->first();
+    //     if (! $user || !Hash::check($request->password, $user->password)) {
+    //         throw ValidationException::withMessages([
+    //             'email' => ['Utilisateur non reconnu(e)'],
+    //         ]);
+    //     }
+    //     $token = $user->createToken('auth_token')->plainTextToken;
+    //     return response()->json(['access_token' => $token, 'token_type' => 'Baerer']);
+    // }
+    public function login(AuthSave $request) {
+        $credentials = $request->only('email', 'password');
+
+        // Valider les credentials
         $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string'
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
-        $user = User::where('email', $request->email)->first();
-        if (! $user || !Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['Utilisateur non reconnu(e)'],
-            ]);
+
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            $token = $user->createToken('auth_token')->plainTextToken; // Récupérer le token brut
+
+            return response()->json([
+                'message' => 'Connexion réussie',
+                'access_token' => $token,
+                'user' => $user,
+            ], 200);
         }
-        $token = $user->createToken('auth_token')->plainTextToken;
-        return response()->json(['access_token' => $token, 'token_type' => 'Baerer']);
+
+        return response()->json(['message' => 'Identifiants invalides'], 401);
     }
 
     public function register(Request $request){
@@ -42,6 +67,26 @@ class AuthController extends Controller
     public function logout(Request $request){
         $request->user()->tokens()->delete();
         return response()->json(['message' => 'Deconnexion utilisateur se fait avec succes']);
+    }
+
+    public function userConnected(Request $request)
+    {
+        $user = $request->user();
+
+        if ($user) {
+            return response()->json([
+                'message' => 'Utilisateur connecté',
+                'user' => [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                ]
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Aucun utilisateur connecté'
+            ], 401);
+        }
     }
 
     public function index()
