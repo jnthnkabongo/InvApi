@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AuthSave;
+use App\Http\Requests\credentials;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -91,15 +92,20 @@ class AuthController extends Controller
 
     public function index()
     {
-        //
+        return view('Auth.index');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(credentials $request)
     {
-        //
+        $credentials = $request->validated();
+        if(Auth::attempt($credentials)){
+            $request->session()->regenerate();
+            return redirect()->intended(route('dashboard'))->with('message', 'Bienvenu(e) dans notre app de gestion');
+        }
+        return to_route('redirect')->withErrors('Les informations saisies ne sont pas correctes')->onlyInput('email');
     }
 
     /**
@@ -137,8 +143,11 @@ class AuthController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
     }
 }
