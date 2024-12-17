@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         // ...
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.api' => \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
+        'checksession' => \App\Http\Middleware\CheckSession::class,
     ];
 }

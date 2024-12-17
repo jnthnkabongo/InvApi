@@ -103,6 +103,7 @@ class AuthController extends Controller
         $credentials = $request->validated();
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
+            //dd($credentials);
             return redirect()->intended(route('dashboard'))->with('message', 'Bienvenu(e) dans notre app de gestion');
         }
         return to_route('redirect')->withErrors('Les informations saisies ne sont pas correctes')->onlyInput('email');

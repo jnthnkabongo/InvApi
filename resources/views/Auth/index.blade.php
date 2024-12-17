@@ -5,7 +5,7 @@
         <div class="col-lg-3 col-md-2 col-sm-1"></div>
         <div class="col-lg-6 col-md-8 col-sm-10">
             <div class="card-body">
-                <form class="p-4 p-md-8 border rounded-3 bg-light" action="" method="post">
+                <form class="p-4 p-md-8 border rounded-3 bg-light" action="{{ route('soumission') }}" method="post">
                     @csrf
                     <div class="container text-center mb-3">
                         <div class="row align-items-start">
@@ -20,16 +20,20 @@
                     <div class="form-floating mb-3">
                         <input class="form-control" type="email" id="email" name="email" value="{{old('email')}}">
                         <label for="floatingInput">Adresse e-mail</label>
-                        @error("email")
-                            {{ $message }}
-                        @enderror
+                        <div class="text-danger">
+                            @error("email")
+                                {{ $message }}
+                            @enderror
+                        </div>
                     </div>
                     <div class="form-floating mb-3">
                         <input class="form-control" type="password" id="password" name="password">
                         <label for="floatingPassword">Mot de passe</label>
-                        @error("password")
-                            {{ $message }}
-                        @enderror
+                        <div class="text-danger">
+                            @error("password")
+                                {{ $message }}
+                            @enderror
+                        </div>
                     </div>
                     <div class="form-floating mb-3">
                         <button class="w-100 btn btn-lg btn-primary" type="submit">Se connecter</button>
