@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\items;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class materielController extends Controller
 {
@@ -11,7 +14,15 @@ class materielController extends Controller
      */
     public function index()
     {
-        return view('Admin.materiels.liste-materiels');
+        $liste_items = items::paginate('10');
+
+        foreach ($liste_items as $itemsQr) {
+          $qrCode = QrCode::size('30')->generate($itemsQr->id);
+
+          $fileName = "qr_codes/user_{$itemsQr->id}.svg";
+          Storage::disk('public')->put($fileName, $qrCode);
+        }
+        return view('Admin.materiels.liste-materiels', compact('liste_items'));
     }
 
     /**
@@ -22,12 +33,23 @@ class materielController extends Controller
         //
     }
 
+    public function generationQR (){
+        $items = items::all();
+
+        foreach ($items as $itemsQr) {
+            $qrCode = QrCode::size(50)->generate($itemsQr->id);
+
+            $fileName = "qr_codes/user_{$itemsQr->id}.svg";
+            Storage::disk('public')->put($fileName, $qrCode);
+        }
+        return view('Admin.materiels.generationqr', compact('items'));
+    }
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        
+
         return view('Admin.materiels.create-qr');
     }
 

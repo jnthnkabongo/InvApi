@@ -3,10 +3,13 @@
     <div class="pagetitle">
         <div class="card">
             <div class="row m-3">
-                <div class="col-lg-3"></div>
-                <div class="col-lg-6 text-center"><h2>Liste matériels inventoriés</h2></div>
+                <div class="col-lg-3">
+
+                </div>
+                <div class="col-lg-6 text-center"><h2>Liste matériels </h2></div>
                 <div class="col-lg-3 text-center">
-                    <a class="btn btn-primary" href=""> <i class="bi bi-plus-circle-fill"></i>&nbsp; Ajouter</a>
+                    <a class="btn btn-primary" href=""><i class="bi bi-plus-circle-fill"></i>&nbsp; Ajouter</a>
+                    <a class="btn btn-success" href=""><i class="bi bi-table"></i>&nbsp; Importer</a>
                 </div>
             </div>
         </div>
@@ -39,36 +42,31 @@
                             </div>
                         </div>
                       <thead>
-                        <th scope="col">N</th>
-                        <th scope="col">Utilisateur</th>
-                        <th scope="col">Item</th>
-                        <th scope="col">Date inventaire</th>
-                        <th scope="col">Actions</th>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">Position</th>
+                          <th scope="col">Age</th>
+                          <th scope="col">Start Date</th>
+                          <th scope="col">Actions</th>
+                        </tr>
                       </thead>
                       <tbody>
-                        @forelse ( $liste_inventaires as $inventaires)
+                        @foreach ($items as $itemsQr)
                             <tr>
-                                <td scope="col">{{ ($liste_inventaires->perPage() * ($liste_inventaires->currentPage() - 1 ))+ $loop->iteration }}</td>
-                                <td scope="col">{{ ucfirst($inventaires->User ? $inventaires->User->name : 'Aucune donnée')}}</td>
-                                <td scope="col">{{ ucfirst($inventaires->Item ? $inventaires->Item->name : 'Aucune donnée' )}}</td>
-                                <td scope="col">{{ ucfirst($inventaires->date_inventaire)}}</td>
+                                <th scope="row">1</th>
+                                <td>Raheem Lehner</td>
+                                <td>Dynamic Division Officer</td>
+                                <td>47</td>
+                                <td><img src="{{ Storage::url("qr_codes/user_{$itemsQr->id}.svg") }}" alt="Qr Code"></td>
                                 <td>
-                                    <a class="btn btn-primary" href=""><i class="bi bi-eye"></i></a>
-                                    <a class="btn btn-primary" href=""><i class="bi bi-pencil"></i></a>
-                                    <a class="btn btn-danger" href=""><i class="bi bi-trash"></i></a>
+                                <a class="btn btn-primary" href="{{ route('create-qr') }}"><i class="bx bx-qr-scan"></i></a>
+                                <a class="btn btn-primary" href=""><i class="bi bi-pencil"></i></a>
+                                <a class="btn btn-danger" href=""><i class="bi bi-trash"></i></a>
                                 </td>
                             </tr>
-                        @empty
-                            <tr>
-                                <td class="cell" colspan="12">
-                                    <div class="" style="text-align: center">Aucun item a été enregistrer</div>
-                                </td>
-                            </tr>
-                        @endforelse
-                        <tr>
+                        @endforeach
 
-
-                        </tr>
                       </tbody>
                     </table>
                   </div>
@@ -76,5 +74,5 @@
               </div>
             </div>
           </section>
-      </div>
+    </div>
 </main>

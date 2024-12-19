@@ -14,7 +14,8 @@ class inventaireController extends Controller
      */
     public function index()
     {
-        return view('Admin.inventaires.index-inventaires');
+        $liste_inventaires = inventaires::paginate('10');
+        return view('Admin.inventaires.index-inventaires', compact('liste_inventaires'));
     }
 
     /**
@@ -69,9 +70,10 @@ class inventaireController extends Controller
 
     public function inventaire(Request $request){
         $request->validate(['item_id' => 'required|string|max:255']);
+        $request->validate(['user_id' => 'required|integer']);
 
         $inventory = new inventaires();
-        $inventory->user_id = Auth::id();
+        $inventory->user_id = $request->user_id;
         $inventory->item_id = $request->item_id;
         $inventory->date_inventaire = now()->toDateString();
         $inventory->save();

@@ -115,7 +115,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('liste-materiels') }}">
                 <i class="bi bi-grid-3x3-gap-fill"></i>
-                <span>Materiels </span>
+                <span>Matériels </span>
                 </a>
             </li>
             <li class="nav-item">
