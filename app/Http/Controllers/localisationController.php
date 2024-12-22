@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\localisations;
+use App\Models\Shops;
 use Illuminate\Http\Request;
 
 class localisationController extends Controller
@@ -11,7 +13,8 @@ class localisationController extends Controller
      */
     public function index()
     {
-        return view('Admin.localisations.liste-localisation');
+        $liste_regions = Shops::paginate('10');
+        return view('Admin.localisations.liste-localisation', compact('liste_regions'));
     }
 
     /**
@@ -19,7 +22,7 @@ class localisationController extends Controller
      */
     public function create()
     {
-        //
+        return view('Admin.localisations.creation-localisation');
     }
 
     /**

@@ -49,8 +49,17 @@ class User extends Authenticatable
     *
     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
     */
-   public function roles(): BelongsTo
+   public function Roles(): BelongsTo
    {
        return $this->belongsTo(Roles::class, 'role_id', 'id');
+   }
+   /**
+    * Get the Regions that owns the User
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    */
+   public function Regions(): BelongsTo
+   {
+       return $this->belongsTo(regions::class, 'region_id', 'id');
    }
 }

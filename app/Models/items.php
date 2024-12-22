@@ -36,4 +36,32 @@ class items extends Model
     {
         return $this->belongsTo(localisations::class, 'localisation_id', 'id');
     }
+    /**
+     * Get the Status that owns the items
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function Status(): BelongsTo
+    {
+        return $this->belongsTo(statusitems::class, 'status_item_id', 'id');
+    }
+    /**
+     * Get the Etatitems that owns the items
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function Etatitems(): BelongsTo
+    {
+        return $this->belongsTo(etatitems::class, 'etat_item_id', 'id');
+    }
+
+    /**
+     * Get the Communes that owns the items
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function Communes(): BelongsTo
+    {
+        return $this->belongsTo(communes::class, 'commune_id', 'id');
+    }
 }

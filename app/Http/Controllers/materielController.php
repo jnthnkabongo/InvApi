@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\communes;
+use App\Models\etatitems;
 use App\Models\items;
+use App\Models\localisations;
+use App\Models\statusitems;
+use App\Models\typesitems;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -50,7 +55,7 @@ class materielController extends Controller
     public function store(Request $request)
     {
 
-        return view('Admin.materiels.create-qr');
+        return view('Admin.materiels.creer-materiel');
     }
 
     /**
@@ -64,9 +69,14 @@ class materielController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(items $itemsQr)
     {
-        //
+        $liste_item = typesitems::all();
+        $liste_status = statusitems::all();
+        $liste_etats = etatitems::all();
+        $liste_communes = communes::all();
+        $liste_localisations = localisations::all();
+        return view('Admin.materiels.modifier-materiel', compact('itemsQr','liste_item','liste_status','liste_etats','liste_communes','liste_localisations'));
     }
 
     /**

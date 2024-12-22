@@ -30,17 +30,25 @@ Route::group(['middleware' => 'auth'], function(){
     //Materiels
     Route::get('liste-materiels', [materielController::class, 'index'])->name('liste-materiels');
     Route::get('creation-materiel', [materielController::class, 'store'])->name('creer-materiel');
-    Route::post('soumission-creation-materiel', [materielController::class, 'store'])->name('creer-materiel');
-    Route::get('modification-materiel', [materielController::class, 'destroy'])->name('supprimer-materiel');
-    Route::post('soumission-meidification-materiel', [materielController::class, 'destroy'])->name('supprimer-materiel');
-    Route::get('supprimer-materiel', [materielController::class, 'destroy'])->name('supprimer-materiel');
+    Route::post('soumission-creation-materiel', [materielController::class, 'create'])->name('soumission-materiels');
+    Route::get('modification-materiel-{itemsQr}', [materielController::class, 'edit'])->name('modification-materiel');
+    Route::post('soumission-modification-materiel-{}', [materielController::class, 'update'])->name('soumission-modification-materiels');
+    Route::get('supprimer-materiel-{itemsQr}', [materielController::class, 'destroy'])->name('supprimer-materiel');
     Route::get('generation-QR', [materielController::class, 'generationQR'])->name('generation-qr');
     Route::get('creation-qr', [materielController::class, 'store'])->name('create-qr');
     //Utilisateur
     Route::get('liste-utilisateurs', [utilisateurController::class, 'index'])->name('liste-utilisateurs');
+    Route::get('creation-utilisateur', [utilisateurController::class, 'create'])->name('creation-utilisateurs');
+    Route::post('soumission-utilisateurs', [utilisateurController::class, 'soumission'])->name('soumission-utilisateurs');
+    Route::get('modification-utilisateur-{utilisateur}', [utilisateurController::class, 'store'])->name('afficher-modification-utilisateurs');
+    Route::get('soumission-modification-utilisateurs-{utilisateur}', [utilisateurController::class, 'update'])->name('modification-utilisateurs');
+    Route::get('suppression-utilisateur-{utilisateur}', [utilisateurController::class, 'destroy'])->name('supprimer-utilisateurs');
     //Parametres
     Route::get('liste-parametres', [parametreController::class, 'index'])->name('liste-parametres');
     //Localisations
     Route::get('liste-localisations', [localisationController::class, 'index'])->name('liste-localisations');
+    Route::get('creation-localisation', [localisationController::class, 'create'])->name('creation-localisation');
+    Route::post('creation-localisation', [localisationController::class, 'soumission'])->name('soumission-localisation');
 });
 Route::get('404', [errorController::class, 'index'])->name('error');
+Route::get('logout', [AuthController::class, 'destroy'])->name('logout');
