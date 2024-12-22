@@ -59,7 +59,7 @@
                                 <td>{{ ucfirst($utilisateur->Roles ? $utilisateur->Roles->role : 'Aucune donnée') }}</td>
                                 <td>{{ ucfirst($utilisateur->Regions ? $utilisateur->Regions->name :'Aucune donnée') }}</td>
                                 <td>
-                                <a class="btn btn-primary" href="{{ route('create-qr') }}"><i class="bi bi-eye"></i></a>
+                                <a class="btn btn-primary" href="{{ route('detail-utilisateurs', $utilisateur->id ) }}"><i class="bi bi-eye"></i></a>
                                 <a class="btn btn-primary" href="{{ route('afficher-modification-utilisateurs', $utilisateur->id) }}"><i class="bi bi-pencil"></i></a>
                                 <a class="btn btn-danger" href="{{ route('supprimer-utilisateurs', $utilisateur->id) }}"><i class="bi bi-trash"></i></a>
                                 </td>

@@ -131,6 +131,18 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link collapsed" href="">
+                <i class="bi bi-card-checklist"></i>
+                <span>Categorie item</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="">
+                <i class="bi bi-box-fill"></i>
+                <span>Lot</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('liste-parametres') }}">
                 <i class="bi bi-gear-fill"></i>
                 <span>Parametres</span>

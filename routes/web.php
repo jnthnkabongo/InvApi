@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth'], function(){
     //Utilisateur
     Route::get('liste-utilisateurs', [utilisateurController::class, 'index'])->name('liste-utilisateurs');
     Route::get('creation-utilisateur', [utilisateurController::class, 'create'])->name('creation-utilisateurs');
+    Route::get('detail-utilisateur-{utilisateur}', [utilisateurController::class, 'show'])->name('detail-utilisateurs');
     Route::post('soumission-utilisateurs', [utilisateurController::class, 'soumission'])->name('soumission-utilisateurs');
     Route::get('modification-utilisateur-{utilisateur}', [utilisateurController::class, 'store'])->name('afficher-modification-utilisateurs');
     Route::get('soumission-modification-utilisateurs-{utilisateur}', [utilisateurController::class, 'update'])->name('modification-utilisateurs');
@@ -48,7 +49,12 @@ Route::group(['middleware' => 'auth'], function(){
     //Localisations
     Route::get('liste-localisations', [localisationController::class, 'index'])->name('liste-localisations');
     Route::get('creation-localisation', [localisationController::class, 'create'])->name('creation-localisation');
-    Route::post('creation-localisation', [localisationController::class, 'soumission'])->name('soumission-localisation');
+    Route::post('soumission-localisation', [localisationController::class, 'soumission'])->name('soumission-localisation');
+    Route::post('detail-localisation-{region}', [localisationController::class, 'show'])->name('detail-localisation');
+    Route::get('modification-localisation-{region}', [localisationController::class, 'store'])->name('afficher-modification-localisation');
+    Route::post('soumission-modification-localisation-{region}', [localisationController::class, 'update'])->name('modifier-localisation');
+    Route::get('supprimer-localisation-{region}', [localisationController::class, 'destroy'])->name('supprimer-localisation');
+
 });
 Route::get('404', [errorController::class, 'index'])->name('error');
 Route::get('logout', [AuthController::class, 'destroy'])->name('logout');

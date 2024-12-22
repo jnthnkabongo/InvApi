@@ -57,9 +57,9 @@
                                 <td>{{ ucfirst($region->Localisation ? $region->Localisation->name :'Aucune donnée') }}</td>
                                 <td>{{ ucfirst($region->name) }}</td>
                                 <td>
-                                <a class="btn btn-primary" href="{{ route('create-qr') }}"><i class="bi bi-eye"></i></a>
-                                <a class="btn btn-primary" href="{{ route('modification-materiel', $region->id) }}"><i class="bi bi-pencil"></i></a>
-                                <a class="btn btn-danger" href="{{ route('supprimer-materiel', $region->id) }}"><i class="bi bi-trash"></i></a>
+                                <a class="btn btn-primary" href="{{ route('detail-localisation', $region->id) }}"><i class="bi bi-eye"></i></a>
+                                <a class="btn btn-primary" href="{{ route('afficher-modification-localisation', $region->id) }}"><i class="bi bi-pencil"></i></a>
+                                <a class="btn btn-danger" href="{{ route('supprimer-localisation', $region->id) }}"><i class="bi bi-trash"></i></a>
                                 </td>
                             </tr>
                         @endforeach

@@ -38,7 +38,7 @@ class localisationController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**

@@ -58,9 +58,11 @@ class utilisateurController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $utilisateur)
     {
-        //
+        $liste_roles = roles::orderBy('role','asc')->get();
+        $liste_regions = regions::orderBy('name','asc')->get();
+        return view('Admin.utilisateurs.detail-utilisateur', compact('utilisateur','liste_roles','liste_regions'));
     }
 
     /**
