@@ -42,7 +42,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('soumission-utilisateurs', [utilisateurController::class, 'soumission'])->name('soumission-utilisateurs');
     Route::get('modification-utilisateur-{utilisateur}', [utilisateurController::class, 'store'])->name('afficher-modification-utilisateurs');
     Route::get('soumission-modification-utilisateurs-{utilisateur}', [utilisateurController::class, 'update'])->name('modification-utilisateurs');
-    Route::get('suppression-utilisateur-{utilisateur}', [utilisateurController::class, 'destroy'])->name('supprimer-utilisateurs');
+    Route::get('supprimer-utilisateur-{utilisateur}', [utilisateurController::class, 'destroy'])->name('supprimer-utilisateurs');
     //Parametres
     Route::get('liste-parametres', [parametreController::class, 'index'])->name('liste-parametres');
     //Localisations

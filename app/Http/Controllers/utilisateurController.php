@@ -97,7 +97,7 @@ class utilisateurController extends Controller
     public function destroy(User $utilisateur)
     {
         try{
-            $utilisateur->dalete();
+            $utilisateur->delete();
             return back()->with('message','Suppression reussi !');
         } catch (\Throwable $th) {
 

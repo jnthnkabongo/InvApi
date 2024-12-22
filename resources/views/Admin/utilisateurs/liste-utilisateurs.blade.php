@@ -6,7 +6,7 @@
                 <div class="col-lg-4">
                     <a class="btn btn-primary" href="{{ route('dashboard') }}"><i class="bi bi-house-fill"></i>&nbsp; Accueil</a>
                 </div>
-                <div class="col-lg-4 text-center"><h2>Liste matériels </h2></div>
+                <div class="col-lg-4 text-center"><h2>Liste utilisateur </h2></div>
                 <div class="col-lg-4 text-center">
                     <a class="btn btn-primary" href="{{ route('creation-utilisateurs') }}"><i class="bi bi-plus-circle-fill"></i>&nbsp; Ajouter</a>
                 </div>
