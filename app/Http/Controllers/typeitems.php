@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\saveItem;
+use App\Http\Requests\saveTypeitems;
 use App\Models\typesitems;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,7 @@ class typeitems extends Controller
     {
         return view('Admin.type-materiels.creation-type-materiel');
     }
-    public function soumission(typesitems $item, saveItem $request){
+    public function soumission(typesitems $item, saveTypeitems $request){
         try {
             $item->type_name = $request->type_name;
             $item->save();

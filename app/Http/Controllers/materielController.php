@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\saveItem;
 use App\Models\communes;
 use App\Models\etatitems;
 use App\Models\items;
 use App\Models\localisations;
+use App\Models\lots;
+use App\Models\Shops;
 use App\Models\statusitems;
 use App\Models\typesitems;
 use Illuminate\Http\Request;
@@ -37,6 +40,24 @@ class materielController extends Controller
     {
         //
     }
+    public function soumission(items $items, saveItem $request){
+        try {
+            $items->name = $request->name;
+            $items->description = $request->description;
+            $items->lot_id = $request->lot_id;
+            $items->type_item_id = $request->type_item_id;
+            $items->quantite_id = $request->quantite_id;
+            $items->numero_unique = $request->numero_unique;
+            $items->status_item_id = $request->status_item_id;
+            $items->etat_item_id = $request->etat_item_id;
+            $items->localisation_id = $request->localisation_id;
+            //dd($items);
+            $items->save();
+            return redirect()->route('liste-materiels')->with('message', 'Opération réussi !');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('message', 'Une erreur est survenue : ' . $th->getMessage());
+        }
+    }
 
     public function generationQR (){
         $items = items::all();
@@ -54,8 +75,12 @@ class materielController extends Controller
      */
     public function store(Request $request)
     {
-
-        return view('Admin.materiels.creer-materiel');
+        $liste_lot = lots::orderBy('lot_number', 'asc')->get();
+        $liste_type_item = typesitems::orderBy('type_name', 'asc')->get();
+        $liste_status_item = statusitems::orderBy('status', 'asc')->get();
+        $liste_etat_item = etatitems::orderBy('state', 'asc')->get();
+        $liste_shop = Shops::orderBy('name', 'asc')->get();
+        return view('Admin.materiels.creer-materiel', compact('liste_lot','liste_type_item','liste_status_item','liste_etat_item','liste_shop'));
     }
 
     /**

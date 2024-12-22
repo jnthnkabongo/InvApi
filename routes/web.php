@@ -32,7 +32,7 @@ Route::group(['middleware' => 'auth'], function(){
     //Materiels
     Route::get('liste-materiels', [materielController::class, 'index'])->name('liste-materiels');
     Route::get('creation-materiel', [materielController::class, 'store'])->name('creer-materiel');
-    Route::post('soumission-creation-materiel', [materielController::class, 'create'])->name('soumission-materiels');
+    Route::post('soumission-creation-materiel', [materielController::class, 'soumission'])->name('soumission-materiels');
     Route::get('modification-materiel-{itemsQr}', [materielController::class, 'edit'])->name('modification-materiel');
     Route::post('soumission-modification-materiel-{}', [materielController::class, 'update'])->name('soumission-modification-materiels');
     Route::get('supprimer-materiel-{itemsQr}', [materielController::class, 'destroy'])->name('supprimer-materiel');
