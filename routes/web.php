@@ -8,7 +8,9 @@ use App\Http\Controllers\inventaireController;
 use App\Http\Controllers\localisationController;
 use App\Http\Controllers\materielController;
 use App\Http\Controllers\parametreController;
+use App\Http\Controllers\typeitems;
 use App\Http\Controllers\utilisateurController;
+use App\Models\typesitems;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +38,11 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('supprimer-materiel-{itemsQr}', [materielController::class, 'destroy'])->name('supprimer-materiel');
     Route::get('generation-QR', [materielController::class, 'generationQR'])->name('generation-qr');
     Route::get('creation-qr', [materielController::class, 'store'])->name('create-qr');
+    //Type matériel
+    Route::get('liste-type-materiel', [typeitems::class, 'index'])->name('liste-type-item');
+    Route::get('creation-type-materiel', [typeitems::class, 'create'])->name('creation-type-materiel');
+    Route::post('soumission-type-materiel', [typeitems::class, 'soumission'])->name('soumission-type-item');
+
     //Utilisateur
     Route::get('liste-utilisateurs', [utilisateurController::class, 'index'])->name('liste-utilisateurs');
     Route::get('creation-utilisateur', [utilisateurController::class, 'create'])->name('creation-utilisateurs');

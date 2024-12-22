@@ -131,9 +131,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="">
+                <a class="nav-link collapsed" href="{{ route('liste-type-item') }}">
                 <i class="bi bi-card-checklist"></i>
-                <span>Categorie item</span>
+                <span>Type matériel</span>
                 </a>
             </li>
             <li class="nav-item">
