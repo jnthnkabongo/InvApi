@@ -79,4 +79,15 @@ class inventaireController extends Controller
         $inventory->save();
         return response()->json(['message' => 'Valeur enregistrée avec succes'], 201);
     }
+    public function listemateriels(){
+        $userId = Auth::id();
+        if ($userId) {
+            $liste_materiels = Inventaires::where('user_id', $userId)->get();
+            return response()->json(['user_id' => $userId, 'data' => $liste_materiels]);
+        } else {
+            return response()->json(['error' => 'Utilisateur non authentifié'], 401);
+        }
+    }
+
+
 }

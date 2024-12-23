@@ -37,36 +37,28 @@
                         <label for="inputAddress" class="form-label">Type item</label>
                         <select name="type_item_id" id="type_item_id" class="form-select">
                             <option value="{{ $itemsQr->type_item_id }}">{{ ucfirst($itemsQr->Typeitems ? $itemsQr->Typeitems->type_name : 'Aucune donnée')}}</option>
-                            @foreach ($liste_item as $item)
-                                <option value="{{ $item->id }}">{{ ucfirst($item->type_name)}}</option>
-                            @endforeach
+                          
                         </select>
                     </div>
                     <div class="col-md-5">
                         <label for="inputPassword4" class="form-label">Status item</label>
                         <select name="status_item_id" id="status_item_id" class="form-select">
                             <option value={{ $itemsQr->status_item_id }}>{{ ucfirst($itemsQr->Status ? $itemsQr->Status->status : 'Aucune donnée')}}</option>
-                            @foreach ($liste_status as $statut)
-                                <option value="{{ $statut->id }}">{{ ucfirst($statut->status)}}</option>
-                            @endforeach
+
                         </select>
                     </div>
                     <div class="col-md-5">
                         <label for="inputState" class="form-label">Etat item</label>
                         <select name="etat_item_id" id="etat_item_id" class="form-select">
                             <option value="{{ $itemsQr->etat_item_id }}">{{ ucfirst($itemsQr->Etatitems ? $itemsQr->Etatitems->state : 'Aucune donnée')}}</option>
-                            @foreach ($liste_etats as $etat_item)
-                                <option value="{{ $etat_item->id }}">{{ $etat_item->state }}</option>
-                            @endforeach
+
                         </select>
                     </div>
                     <div class="col-md-5">
                         <label for="inputState" class="form-label">Localisation</label>
                         <select name="localisation_id" id="localisation_id" class="form-select">
                             <option value="{{ $itemsQr->localisation_id }}">{{ ucfirst($itemsQr->Localisations ? $itemsQr->Localisations->name : 'Aucune donnée')}}</option>
-                            @foreach ($liste_localisations as $localisations)
-                                <option value="{{ $localisations->id }}">{{ ucfirst($localisations->name)}}</option>
-                            @endforeach
+
                         </select>
                     </div>
                     <div class="col-5">

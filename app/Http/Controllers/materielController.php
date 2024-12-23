@@ -86,9 +86,15 @@ class materielController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(items $itemsQr)
     {
-        //
+        $liste_item = typesitems::all();
+        $liste_status = statusitems::all();
+        $liste_etats = etatitems::all();
+        $liste_communes = communes::all();
+        $liste_localisations = localisations::all();
+        return view('Admin.materiels.detail-materiel', compact('itemsQr','liste_item','liste_status','liste_etats','liste_communes','liste_localisations'));
+
     }
 
     /**
@@ -107,9 +113,24 @@ class materielController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, items $itemsQr)
     {
-        //
+        try {
+            $itemsQr->name = $request->name;
+            $itemsQr->description = $request->description;
+            $itemsQr->lot_id = $request->lot_id;
+            $itemsQr->type_item_id = $request->type_item_id;
+            $itemsQr->quantite_id = $request->quantite_id;
+            $itemsQr->numero_unique = $request->numero_unique;
+            $itemsQr->status_item_id = $request->status_item_id;
+            $itemsQr->etat_item_id = $request->etat_item_id;
+            $itemsQr->localisation_id = $request->localisation_id;
+            $itemsQr->update();
+            return redirect()->route('liste-materiels')->with('message', 'Opération réussi !');
+
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('message', 'Une erreur est survenue : ' . $th->getMessage());
+        }
     }
 
     /**

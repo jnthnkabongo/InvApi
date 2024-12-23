@@ -64,7 +64,7 @@
                                 <td>{{ ucfirst($itemsQr->Localisations ? $itemsQr->Localisations->name : 'Aucune donnée') }}</td>
                                 <td><img src="{{ Storage::url("qr_codes/user_{$itemsQr->id}.svg") }}" alt="Qr Code"></td>
                                 <td>
-                                <a class="btn btn-primary" href="{{ route('create-qr') }}"><i class="bi bi-eye"></i></a>
+                                <a class="btn btn-primary" href="{{ route('detail-materiel', $itemsQr) }}"><i class="bi bi-eye"></i></a>
                                 <a class="btn btn-primary" href="{{ route('modification-materiel', $itemsQr->id) }}"><i class="bi bi-pencil"></i></a>
                                 <a class="btn btn-danger" href="{{ route('supprimer-materiel', $itemsQr->id) }}"><i class="bi bi-trash"></i></a>
                                 </td>
