@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Application Inventaire Bboxx</title>
     <link rel="stylesheet" href="{{ asset('dist/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}">
@@ -14,36 +14,28 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/quill/quill.bubble.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/remixicon/remixicon.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/simple-datatables/style.css') }}">
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
 </head>
 <body>
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
           <a href="{{ route('dashboard') }}" class="logo d-flex align-items-center">
-            <img src="{{ asset('assets/images/téléchargement.jpeg') }}" alt="">
+            <img src="{{ asset('assets/images/logos.png') }}" alt="">
             <span class="d-none d-lg-block"></span>
           </a>
           <i class="bi bi-list toggle-sidebar-btn"></i>
         </div>
-
         <div class="search-bar">
-
         </div>
-
         <nav class="header-nav ms-auto">
           <ul class="d-flex align-items-center">
-
             <li class="nav-item d-block d-lg-none">
               <a class="nav-link nav-icon search-bar-toggle " href="#">
                 <i class="bi bi-search"></i>
               </a>
             </li>
-
-
 
             <li class="nav-item dropdown pe-3">
                 @auth()

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\inventaires;
+use App\Models\User;
 use Dotenv\Parser\Value;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -82,12 +83,17 @@ class inventaireController extends Controller
     public function listemateriels(){
         $userId = Auth::id();
         if ($userId) {
-            $liste_materiels = Inventaires::where('user_id', $userId)->get();
-            return response()->json(['user_id' => $userId, 'data' => $liste_materiels]);
-        } else {
-            return response()->json(['error' => 'Utilisateur non authentifié'], 401);
+            $user = User::find($userId);
+            if ($user) {
+                $liste_materiels = Inventaires::orderBy('created_at', 'desc')->where('user_id', $userId)->get();
+            return response()->json(['user_id' => $userId, 'user_name' => $user->name,'data' => $liste_materiels]);
+
+            }else {
+            return response()->json(['error' => 'Utilisateur non authentifié'], 404);
+            }
+        }else{
+            return response()->json(['error' => 'Utilisateur non authentifié'], 404);
+
         }
     }
-
-
 }

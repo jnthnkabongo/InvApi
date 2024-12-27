@@ -26,7 +26,7 @@ class inventaires extends Model
      */
     public function Item(): BelongsTo
     {
-        return $this->belongsTo(items::class, 'item_id', 'id');
+        return $this->belongsTo(items::class, 'item_id', 'numero_unique');
     }
 }
 

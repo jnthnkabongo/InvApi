@@ -25,9 +25,9 @@ class materielController extends Controller
         $liste_items = items::paginate('10');
 
         foreach ($liste_items as $itemsQr) {
-          $qrCode = QrCode::size('30')->generate($itemsQr->id);
+          $qrCode = QrCode::size('30')->generate($itemsQr->numero_unique);
 
-          $fileName = "qr_codes/user_{$itemsQr->id}.svg";
+          $fileName = "qr_codes/user_{$itemsQr->numero_unique}.svg";
           Storage::disk('public')->put($fileName, $qrCode);
         }
         return view('Admin.materiels.liste-materiels', compact('liste_items'));
@@ -63,9 +63,9 @@ class materielController extends Controller
         $items = items::all();
 
         foreach ($items as $itemsQr) {
-            $qrCode = QrCode::size(50)->generate($itemsQr->id);
+            $qrCode = QrCode::size(50)->generate($itemsQr->numero_unique);
 
-            $fileName = "qr_codes/user_{$itemsQr->id}.svg";
+            $fileName = "qr_codes/user_{$itemsQr->numero_unique}.svg";
             Storage::disk('public')->put($fileName, $qrCode);
         }
         return view('Admin.materiels.generationqr', compact('items'));
